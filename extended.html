@@ -355,6 +355,116 @@
       white-space: nowrap;
     }
 
+    .cheat-sheet {
+      margin-top: 18px;
+      padding: clamp(20px, 4vw, 34px);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(18, 23, 34, .94);
+      box-shadow: var(--shadow);
+    }
+
+    .cheat-sheet-header {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, .8fr);
+      gap: 24px;
+      align-items: end;
+      margin-bottom: 22px;
+    }
+
+    .cheat-sheet-kicker {
+      margin: 0 0 5px;
+      color: var(--accent-2);
+      font-size: .74rem;
+      font-weight: 800;
+      letter-spacing: .09em;
+    }
+
+    .cheat-sheet h2 {
+      margin: 0;
+      font-size: clamp(1.35rem, 3vw, 1.85rem);
+      line-height: 1.35;
+    }
+
+    .cheat-sheet-intro {
+      margin: 0;
+      color: var(--muted);
+      font-size: .88rem;
+    }
+
+    .cheat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .cheat-card {
+      min-width: 0;
+      padding: 17px;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      background: rgba(10, 15, 23, .56);
+    }
+
+    .cheat-card h3 {
+      margin: 0 0 11px;
+      font-size: 1rem;
+    }
+
+    .cheat-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .84rem;
+    }
+
+    .cheat-table th,
+    .cheat-table td {
+      padding: 8px 7px;
+      border-top: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .cheat-table tr:first-child th,
+    .cheat-table tr:first-child td {
+      border-top: 0;
+    }
+
+    .cheat-table th {
+      width: 32%;
+      color: var(--muted);
+      font-weight: 650;
+    }
+
+    .cheat-table code {
+      color: #dce5ff;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      overflow-wrap: anywhere;
+    }
+
+    .support {
+      display: inline-block;
+      margin-top: 4px;
+      padding: 1px 6px;
+      border-radius: 999px;
+      background: rgba(119, 216, 186, .11);
+      color: var(--accent-2);
+      font-size: .68rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .support.external {
+      background: rgba(255, 203, 117, .10);
+      color: #ffcb75;
+    }
+
+    .cheat-sheet-note {
+      margin: 16px 0 0;
+      color: var(--muted);
+      font-size: .8rem;
+    }
+
     .status-saved { color: var(--accent-2); }
     .status-error { color: var(--danger); }
 
@@ -364,6 +474,8 @@
       .app-title { flex-direction: column; gap: 1px; }
       .toolbar-group + .toolbar-group { padding-left: 0; border-left: 0; }
       .toolbar { border-radius: 12px 12px 0 0; }
+      .cheat-sheet-header,
+      .cheat-grid { grid-template-columns: 1fr; }
       .editor-shell {
         grid-template-columns: 1fr;
         height: auto;
@@ -465,6 +577,111 @@
         </div>
         <div id="preview" class="preview" aria-live="polite"></div>
       </div>
+    </section>
+
+    <section class="cheat-sheet" aria-labelledby="cheatSheetTitle">
+      <header class="cheat-sheet-header">
+        <div>
+          <p class="cheat-sheet-kicker">CHEAT SHEET</p>
+          <h2 id="cheatSheetTitle">Markdown記法と拡張記法</h2>
+        </div>
+        <p class="cheat-sheet-intro">ツールバーを使わず直接入力するときの一覧です。「保存先依存」は一般的な記法ですが、このミニプレビューでは変換しません。</p>
+      </header>
+
+      <div class="cheat-grid">
+        <article class="cheat-card">
+          <h3>見出しと段落</h3>
+          <table class="cheat-table">
+            <tbody>
+              <tr><th>見出し1</th><td><code># 見出し</code><br><span class="support">プレビュー対応</span></td></tr>
+              <tr><th>見出し2</th><td><code>## 見出し</code><br><span class="support">プレビュー対応</span></td></tr>
+              <tr><th>見出し3</th><td><code>### 見出し</code><br><span class="support">プレビュー対応</span></td></tr>
+              <tr><th>段落</th><td>文章の間に空行を入れる<br><span class="support">プレビュー対応</span></td></tr>
+              <tr><th>強制改行</th><td>行末に半角スペースを2つ<br><span class="support external">保存先依存</span></td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="cheat-card">
+          <h3>文字装飾</h3>
+          <table class="cheat-table">
+            <tbody>
+              <tr><th>太字</th><td><code>**太字**</code><br><span class="support">プレビュー対応</span></td></tr>
+              <tr><th>斜体</th><td><code>*斜体*</code><br><span class="support">プレビュー対応</span></td></tr>
+              <tr><th>インラインコード</th><td><code>`code`</code><br><span class="support">プレビュー対応</span></td></tr>
+              <tr><th>記号の無効化</th><td><code>\*装飾しない*</code><br><span class="support external">保存先依存</span></td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="cheat-card">
+          <h3>リスト</h3>
+          <table class="cheat-table">
+            <tbody>
+              <tr><th>箇条書き</th><td><code>- 項目</code>、<code>* 項目</code>、<code>+ 項目</code><br><span class="support">プレビュー対応</span></td></tr>
+              <tr><th>番号付き</th><td><code>1. 手順</code><br><span class="support">プレビュー対応</span></td></tr>
+              <tr><th>入れ子</th><td>子項目の先頭をスペースで字下げ<br><span class="support external">保存先依存</span></td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="cheat-card">
+          <h3>リンクと画像</h3>
+          <table class="cheat-table">
+            <tbody>
+              <tr><th>リンク</th><td><code>[表示名](https://example.com)</code><br><span class="support">プレビュー対応</span></td></tr>
+              <tr><th>画像</th><td><code>![代替テキスト](画像URL)</code><br><span class="support external">保存先依存</span></td></tr>
+              <tr><th>URL自動リンク</th><td><code>&lt;https://example.com&gt;</code><br><span class="support external">保存先依存</span></td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="cheat-card">
+          <h3>引用とコード</h3>
+          <table class="cheat-table">
+            <tbody>
+              <tr><th>引用</th><td><code>&gt; 引用文</code><br><span class="support">プレビュー対応</span></td></tr>
+              <tr><th>コードブロック</th><td><code>```</code>で前後を囲む<br><span class="support">プレビュー対応</span></td></tr>
+              <tr><th>言語指定</th><td><code>```javascript</code>のように開始<br><span class="support">プレビュー対応</span></td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="cheat-card">
+          <h3>区切り線</h3>
+          <table class="cheat-table">
+            <tbody>
+              <tr><th>ハイフン</th><td><code>---</code><br><span class="support">プレビュー対応</span></td></tr>
+              <tr><th>アスタリスク</th><td><code>***</code><br><span class="support">プレビュー対応</span></td></tr>
+              <tr><th>アンダースコア</th><td><code>___</code><br><span class="support">プレビュー対応</span></td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="cheat-card">
+          <h3>このエディターの追加記法</h3>
+          <table class="cheat-table">
+            <tbody>
+              <tr><th>取り消し線</th><td><code>~~取り消し線~~</code><br><span class="support">プレビュー対応</span></td></tr>
+              <tr><th>下線</th><td><code>++下線++</code><br><span class="support">プレビュー対応</span></td></tr>
+              <tr><th>文字色</th><td><code>{#FF0000|赤い文字}</code><br><span class="support">プレビュー対応</span></td></tr>
+              <tr><th>目次</th><td><code>[[目次]]</code><br><span class="support">プレビュー対応</span></td></tr>
+            </tbody>
+          </table>
+        </article>
+
+        <article class="cheat-card">
+          <h3>GitHubでよく使う拡張</h3>
+          <table class="cheat-table">
+            <tbody>
+              <tr><th>タスクリスト</th><td><code>- [ ] 未完了</code>、<code>- [x] 完了</code><br><span class="support external">GitHub側で表示</span></td></tr>
+              <tr><th>表</th><td><code>| 列1 | 列2 |</code>と区切り行で作成<br><span class="support external">GitHub側で表示</span></td></tr>
+            </tbody>
+          </table>
+        </article>
+      </div>
+
+      <p class="cheat-sheet-note">独自記法はこのエディターのプレビューとHTML保存で表示されます。ほかのMarkdown表示環境では、そのまま文字として表示される場合があります。</p>
     </section>
   </main>
 
